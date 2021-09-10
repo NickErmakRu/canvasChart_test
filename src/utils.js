@@ -69,3 +69,15 @@ export function boundaries({ columns, types }) {
 
   return [min, max]
 }
+
+export function css(el, styles = {}) {
+  Object.assign(el.style, styles)
+}
+
+export function toCoords(xRatio, yRatio, DPI_HEIGHT, PADDING) {
+  return (col) => col.map((y, i) => [
+    Math.floor((i - 1) * xRatio), 
+    Math.floor(DPI_HEIGHT - PADDING - y * yRatio)
+  ])
+  .filter((_, i) => i !== 0);
+}
